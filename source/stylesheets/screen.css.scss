@@ -23,7 +23,18 @@ under the License.
 ////////////////////////////////////////////////////////////////////////////////
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
-
+a[href="#open-api"]
+{
+  margin-top: 10px !important;
+  font-size: 12pt;
+  color: #ffd769;
+}
+a[href="#closed-api"]
+{
+  margin-top: 10px !important;
+  font-size: 12pt;
+  color: #ffd769;
+}
 html, body {
   color: $main-text;
   padding: 0;

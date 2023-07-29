@@ -1,15 +1,15 @@
 ---
-title: API Reference
+title: API bukaOlshop
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
-  - shell
-  - ruby
-  - python
   - javascript
+  - php
+
+
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='https://play.google.com/store/apps/details?id=com.bukaolshop'>Download bukaOlshop</a>
+
 
 includes:
   - errors
@@ -23,54 +23,79 @@ meta:
     content: Documentation for the Kittn API
 ---
 
-# Introduction
+# Welcome Developer
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Selamat datang di dokumentasi API bukaOlshop. Anda bisa menggunakan API bukaOlshop untuk mengelola berbagai fitur utama pada aplikasi bukaOlshop seperti produk, transaksi, member dan kategori.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+Version 1.1
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+<b>Pembagian Endpoint</b><br>
+Pada API bukaOlshop, terdapat dua tipe API, yaitu Open API dan Closed API. Penjelasan keduanya bisa <a href="#penjelasan-open-api">dilihat disini</a>.
+</aside>
+##Penjelasan Open API
+Open API merupakan endpoint yang dapat pemilik olshop gunakan untuk mengakses data-data pada server bukaOlshop tanpa resiko di sisi keamanan akun. Open API ini dapat anda gunakan pada html di apk olshop langsung untuk keperluan mendapatkan data produk, kategori, transaksi, dan lain-lain.
+
+Open API memungkinkan penyedia jasa desain halaman HTML untuk mengkostum tampilan sesuai permintaan client tanpa perlu meminta API key yang digunakan di Closed API, sehingga menghilangkan potensi peretasan pada akun pemilik olshop.
+
+Open API dapat diakses secara unlimited pada paket PRO dan BISNIS, untuk paket LITE dan FREE terbatas hanya 100 request perhari.
+
+##Penjelasan Closed API
+Closed API merupakan endpoint yang memerlukan API key untuk mengakses data dan mengubah data di server bukaOlshop. API Key yang digunakan untuk mengakses Closed API ini sangat rentan dan harus di jaga dengan baik dan tidak diberikan ke siapapun karena endpoint ini dapat digunakan untuk menambah saldo member. Gunakan Closed API ini jika anda paham pemograman dan implementasi API, tidak disarankan untuk memberikan API key ke layanan pihak ketiga.
+
+Closed API memiliki rate limit yang bisa dilihat disini  
+
+# OPEN API
+Dokumentasi Open API.
+
+# Main Endpoint
+
+> Cara menambahkan token ke URL endpoint
+
+```javascript
+fetch('https://openapi.bukaolshop.net/v1/app/produk?token=xxxxxxxx')
+.then(
+  response => response.json()
+).then(jsonResponse => {
+  console.log(jsonResponse);
+});
+
+```
+
+> Contoh parameter request tambahan, misal ke page selanjutnya
+
+```javascript
+fetch('https://openapi.bukaolshop.net/v1/app/produk?token=xxxxxxxx&page=2')
+.then(
+  response => response.json()
+).then(jsonResponse => {
+  console.log(jsonResponse);
+});
+
+```
+
+Berikut ini merupakan URL utama endpoint pada Open API bukaOlshop:
+
+`https://openapi.bukaolshop.net/v1/app`
+
+Anda harus menambahkan path tambahan sesuai bagian yang ingin anda request. Contoh: jika anda ingin mendapatkan list produk, maka url akan menjadi:
+
+`https://openapi.bukaolshop.net/v1/app/produk`
+
+Walaupun Open API ini dapat diletakkan dimanapun di HTML, kami tetap mewajibkan untuk menyertakan `token` didalam tiap request untuk membedakan tiap aplikasi.
+
+Walaupun tidak ada resiko keamanan yang berarti, kami tidak menyarankan anda menyebarkan link endpoint yang terdapat `token` olshop anda ke tempat publik seperti di dalam grup.
+
+<aside class="notice">
+Semua request ke endpoint Open API ini dilakukan melalui method <code>GET</code>.
 </aside>
 
+<aside class="notice">
+<code>Token</code> dapat didapatkan di aplikasi bukaOlshop versi terbaru, dibagian Tab <code>TOKO</code>, klik <code>API & Callback</code>, pindah kehalaman <code>API</code>, disitu anda akan mendapatkan token pada bagian Open API.
+</aside>
+
+# CLOSED API
+# Main Endpoint
 # Kittens
 
 ## Get All Kittens
@@ -242,4 +267,3 @@ This endpoint deletes a specific kitten.
 Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
-
