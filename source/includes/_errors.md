@@ -1,22 +1,19 @@
-# Errors
+# Errors Code
 
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+Lihat penjelasan mengenai HTTP Request di <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Wikipedia</a>
 </aside>
 
-The Kittn API uses the following error codes:
+API bukaOlshop menggunakan kode respons HTTP standart, berikut ini beberapa respon yang mungkin akan anda terima:
 
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+400 |	Bad Request -- Data yang anda input salah, pastikan anda menginput data yang wajib di isi dengan benar.
+401	| Unauthorized -- API key anda salah, atau Authorization header tidak dikirim dengan benar.
+403	| Forbidden -- Autentikasi berhasil, namun anda tidak memiliki hak untuk melihat data.
+404	| Not Found -- Data yang anda cari tidak ditemukan.
+405	| Method Not Allowed -- Anda mencoba mengakses endpoint dengan method yang salah.
+429	| Too Many Requests -- Anda melakukan terlalu banyak request saat bersamaan, atau kuota request perhari anda telah habis.
+500	| Internal Server Error -- sedang terjadi masalah pada server, silahkan coba lagi nanti.
+503	| Service Unavailable -- Server bukaOlshop sedang offline atau maintenance, silahkan coba lagi nanti.
