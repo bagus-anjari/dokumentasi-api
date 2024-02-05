@@ -131,8 +131,17 @@ Tiap request akan mengirimkan sebanyak 10 data produk. Jika ingin mendapatkan da
 Parameter | Wajib | Deskripsi | Tipe
 --------- | ------- | ----------- | -----------
 token | Ya | Token dapat didapatkan di aplikasi bukaOlshop. | String
-page | Tidak |Posisi daftar halaman produk. | Integer
+page | Ya |Posisi daftar halaman produk. | Integer
+id_kategori | Tidak |Filter produk berdasarkan id_kategori | Integer
+total_data| Tidak |Jumlah data yang dikirim perhalaman, isi dengan kelipatan 10.| Integer
+cari_nama_produk| Tidak |Cari berdasarkan nama produk, pastikan hanya huruf, angka dan spasi| String
 
+<aside class="notice">
+<b>Penjelasan total_data</b><br>
+Anda bisa menentukan berapa jumlah data yang server bukaOlshop kirim dalam sekali request. Nilai yang diterima yaitu kelipatan 10 sampai maksimal 100. Jika anda tidak mengisi bagian ini, maka default data yang dikirim yaitu 10 data.
+<br><br>
+Contoh, jika anda mengisi nilai 50, make page 1 akan menampilkan 50 data, page 2 juga akan 50 data, begitu seterusnya.
+</aside>
 
 
 ##***GET*** Daftar Kategori
