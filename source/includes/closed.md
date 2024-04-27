@@ -704,6 +704,7 @@ email_user	| body |	isi dengan email_user	| No |	String
 tipe	| body |		isi dengan <code>tambah</code> atau <code>kurang</code>	| Yes |	Enum <code>tambah</code>/<code>kurang</code>
 jumlah	| body |	isi dengan jumlah saldo yang ingin ditambah	| No |	Integer
 pin	| body |	Jika ingin memvalidasi perubahan saldo dengan pin member, tambahkan parameter pin yang berisi PIN yang diinputkan oleh member	| No |	String 6 digit PIN
+catatan_saldo	| body |	Catatan/informasi mengenai perubahan saldo	| No |	String
 
 
 <aside class="warning">

@@ -434,7 +434,11 @@ xmlHttpRequest.send();
 
 **Description**: Endpoint ini berfungsi untuk mendapatkan daftar catatan saldo/poin milik member. Tiap request akan mengirimkan sebanyak 10 data catatan. Jika ingin mendapatkan data di halaman selanjutnya, tambahkan parameter `page` kedalam parameter url endpoint. Parameter `page` diisi dengan format angka, misal 2, 3, 4 dst.
 
-Secara default, data yang akan ditampilkan yaitu data saldo, jika ingin mendapatkan data poin,<br>tambahakan parameter ```tipe=poin``` pada request
+Secara default, data yang akan ditampilkan yaitu data saldo, jika ingin mendapatkan data poin,<br>tambahakan parameter ```tipe=poin``` pada request.
+
+Jika anda ingin mendapatkan lebih dari 10 data per halaman, tambahkan parameter `total_data` dengan nilai kelipatan 10, misal 20, 30, 40 dst (max 100).
+
+Pada hasil respon, bukaOlshop menyertakan parameter `link_transaksi` yang bisa anda letakkan pada link, tujuan `link_transaksi` yaitu untuk membuka halaman transaksi yang dimiliki oleh catatan saldo.
 
 > Contoh Respon tipe saldo
 
@@ -443,6 +447,7 @@ Secara default, data yang akan ditampilkan yaitu data saldo, jika ingin mendapat
   "code": 200,
   "status": "ok",
   "page": 1,
+  "total_data":10,
   "data": [
     {
       "informasi_catatan": "Pengembalian saldo dari transaksi 875169634 yang otomatis dibatalkan.",
@@ -450,15 +455,21 @@ Secara default, data yang akan ditampilkan yaitu data saldo, jika ingin mendapat
       "tipe_jumlah": "tambah",
       "tipe_mutasi": "transaksi",
       "tanggal": "2023-07-27 15:17:11",
-      "saldo_terakhir": "12114"
+      "saldo_terakhir": "12114",
+      "link_transaksi":"https:\/\/olshopgue.bukaolshop.site\/akun\/?page=transaksi&nomor=875169634",
+      "nomor_pembayaran":"875169634",
+      "catatan_saldo":""
     },
     {
-      "informasi_catatan": "Member melakukan transaksi menggunakan saldo (#875169634)",
+      "informasi_catatan": "Member melakukan transaksi menggunakan saldo (#412512535474)",
       "jumlah_dana": "3423",    
       "tipe_jumlah": "kurang",
       "tipe_mutasi": "transaksi",      
       "tanggal": "2023-07-27 15:17:11",
-      "saldo_terakhir": "8691"
+      "saldo_terakhir": "8691",
+      "link_transaksi":"https:\/\/olshopgue.bukaolshop.site\/akun\/?page=transaksi&nomor=412512535474",
+      "nomor_pembayaran":"412512535474",
+      "catatan_saldo":""
     }  
   ]
 }
@@ -505,6 +516,7 @@ token_user | Ya | Isi dengan `{{token_user}}` | String
 id_user | Ya | Isi dengan `{{id_user}}` | String
 page | Tidak |Posisi daftar halaman produk. | Integer
 tipe | Tidak | Tipe catatan | Enum (```saldo``` atau ```poin```)
+total_data| Tidak |Jumlah data yang dikirim perhalaman, isi dengan kelipatan 10.| Integer
 
 
 
@@ -530,6 +542,8 @@ xmlHttpRequest.send();
 
 **Description**: Endpoint ini berfungsi untuk mendapatkan daftar transaksi milik member. Tiap request akan mengirimkan sebanyak 10 data transaksi. Jika ingin mendapatkan data di halaman selanjutnya, tambahkan parameter `page` kedalam parameter url endpoint. Parameter `page` diisi dengan format angka, misal 2, 3, 4 dst.
 
+Jika anda ingin mendapatkan lebih dari 10 data per halaman, tambahkan parameter `total_data` dengan nilai kelipatan 10, misal 20, 30, 40 dst (max 100).
+
 > Contoh Respon
 
 ```json
@@ -537,6 +551,7 @@ xmlHttpRequest.send();
 	"code": 200,
 	"status": "ok",
 	"page": 1,
+  "total_data":10,
 	"data": [
 		{
 			"nomor_pembayaran": "875169634",
@@ -573,6 +588,7 @@ token | Ya | Token dapat didapatkan di aplikasi bukaOlshop. | String
 token_user | Ya | Isi dengan `{{token_user}}` | String
 id_user | Ya | Isi dengan `{{id_user}}` | String
 page | Tidak |Posisi daftar halaman produk. | Integer
+total_data| Tidak |Jumlah data yang dikirim perhalaman, isi dengan kelipatan 10.| Integer
 
 <aside class="success">
 Jika parameter <code>link_transaksi</code> dibuka didalam apk olshop, maka akan langsung dialihkan ke halaman detail transaksi bawaan apk olshop.
